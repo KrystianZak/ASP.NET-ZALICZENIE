@@ -1,0 +1,41 @@
+﻿@model List<LibrarySystem.Models.Book>
+
+@{
+    ViewBag.Title = "Book List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Book List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Description</th>
+            <th>Categories</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.PublicationYear</td>
+                <td>@book.Description</td>
+                <td>@string.Join(", ", book.Categories)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Add" class="btn btn-success">Add New Book</a>
